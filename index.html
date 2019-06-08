@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<style type="text/css">
+		.bg{
+			background-color: black;
+			
+		}
+		.bang-img, .mem-img, .treasure-img{
+			display: none;
+		}
+		.ryadi {
+			height: 70px;
+		}
+		body {
+			background-color: #5ec466
+		}
+		.window{
+			height: 400px;
+			width:400px;
+			background-color: #42dcf4;
+			position: absolute;
+			top:-100%;
+			transition: 1s;
+			left:35%;
+		}
+		.window2{
+			height: 400px;
+			width:400px;
+			background-color: #42f448;
+			position: absolute;
+			top:-100%;
+			transition: 1s;
+			left:35%;
+		}
+	</style>
+</head>
+<body> 
+	<div class="ins" style="display: block;">
+		<h1>Инструкция : </h1>
+		<p>Всего будет три тура : собери фрукты , поймай Джейка и викторина.</p>
+		<p>В первом туре тебе придется собрать все фрукты с экрана , но по строгой очереди. Которую ты узнаешь при прохождении игры.</p>
+		<p>Во втром туре тебе нужно будет собрать минимум 10 очков. Каждый раз при нажимании на Джейка тебе будут давать по 1 очку , а на Снежного Короля будут отнимать 5</p>
+		<p>В третьем туре тебе нужно будет ответь на вопрос. Чтобы ответить тебе нужно будет нажимать на буквы алфавита. Если это правильная буква , то она откроется , а если это не та , то на экран выйдет окно со словами : "Неправильно"</p>
+	</div>
+	<div class="game" style="display: none;">
+		<div class="container" style="background: green; margin-top: 20px; width: 500px;">
+			<h2 class="text-center">Профессия Дуремара?</h2>
+		</div>
+		<div class="container" style="height: 150px; background: black; width: 490px; margin-top: 30px;">
+			<div class="row">
+				<div class="border text-center py-5 b01 bx" style="width: 61px; height: 150px; background: black;">
+					<h1 class="text-black-50">А</h1>
+				</div>
+				<div class="border text-center py-5 b02 bx" style="width: 61px; height: 150px; background: black;">
+					<h1 class="text-black-50">П</h1>
+				</div>
+				<div class="border text-center py-5 b03 bx" style="width: 61px; height: 150px; background: black;">
+					<h1 class="text-black-50">Т</h1>
+				</div>
+				<div class="border text-center py-5 b04 bx" style="width: 61px; height: 150px; background: black;">
+					<h1 class="text-black-50">Е</h1>
+				</div>
+				<div class="border text-center py-5 b05 bx" style="width: 61px; height: 150px; background: black;">
+					<h1 class="text-black-50">К</h1>
+				</div>
+				<div class="border text-center py-5 b06 bx" style="width: 61px; height: 150px; background: black;">
+					<h1 class="text-black-50">А</h1>
+				</div>
+				<div class="border text-center py-5 b07 bx" style="width: 61px; height: 150px; background: black;">
+					<h1 class="text-black-50">Р</h1>
+				</div>
+				<div class="border text-center py-5 b08 bx" style="width: 61px; height: 150px; background: black;">
+					<h1 class="text-black-50">Ь</h1>
+				</div>
+			</div>
+		</div>
+		<div class="container" style="width: 500px;">
+			<span class="b2">А</span>
+			<span class="b1">Б</span>
+			<span class="b1">В</span>
+			<span class="b1">Г</span>
+			<span class="b1">Д</span>
+			<span class="b5">Е</span>
+			<span class="b1">Ё</span>
+			<span class="b1">Ж</span>
+			<span class="b1">З</span>
+			<span class="b1">И</span>
+			<span class="b1">Й</span>
+			<span class="b6">К</span>
+			<span class="b1">Л</span>
+			<span class="b1">М</span>
+			<span class="b1">Н</span>
+			<span class="b1">О</span>
+			<span class="b3">П</span>
+			<span class="b7">Р</span>
+			<span class="b1">С</span>
+			<span class="b4">Т</span>
+			<span class="b1">У</span>
+			<span class="b1">Ф</span>
+			<span class="b1">Х</span>
+			<span class="b1">Ц</span>
+			<span class="b1">Ч</span>
+			<span class="b1">Ш</span>
+			<span class="b1">Щ</span>
+			<span class="b1">Ъ</span>
+			<span class="b1">Ы</span>
+			<span class="b8">Ь</span>
+			<span class="b1">Э</span>
+			<span class="b1">Ю</span>
+			<span class="b1">Я</span>
+		</div>
+	</div>
+<div class="frute" style="display: none;">
+	<div class="mx-auto col-8">
+		<h1 class="task">Собери виноград</h1>
+		<h1 class="task1" style="display: none;">Собери яблоки</h1>
+		<h1 class="task2" style="display: none;">Собери груши</h1>
+		<h1>Score: <span class="score1">0</span></h1>
+
+		<div class="row">
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="apple.png" alt="" class="aplle">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="plant.png" alt="">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="apple.png" alt="" class="aplle">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="pear.png" alt="" class="pear">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="flower.png" alt="">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="pear.png" alt="" class="pear">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="grape.png" alt="" class="grape">
+			</div>	
+		</div>
+		<div class="row">
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="plant.png" alt="">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="grape.png" alt="" class="grape">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="flower.png" alt="">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="flower.png" alt="">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="pear.png" alt="" class="pear">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="apple.png" alt="" class="aplle">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="pear.png" alt="" class="pear">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="apple.png" alt="" class="aplle">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="apple.png" alt="" class="aplle">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="pear.png" alt="" class="pear">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="grape.png" alt="" class="grape">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="flower.png" alt="">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="pear.png" alt="" class="pear">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="flower.png" alt="">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="apple.png" alt="" class="aplle">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="grape.png" alt="" class="grape">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="apple.png" alt="" class="aplle">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="grape.png" alt="" class="grape">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="flower.png" alt="">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="apple.png" alt="" class="aplle">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="flower.png" alt="">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="pear.png" alt="" class="pear">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="plant.png" alt="">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="apple.png" alt="" class="aplle">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="grape.png" alt="" class="grape">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="apple.png" alt="" class="aplle">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="pear.png" alt="" class="pear">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="apple.png" alt="" class="aplle">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="grape.png" alt="" class="grape">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="apple.png" alt="" class="aplle">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="flower.png" alt="">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="grape.png" alt="" class="grape">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="flower.png" alt="">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="apple.png" alt="" class="aplle">
+			</div>
+			<div class="col-1 px-0 border bg-success ryadi">
+				<img src="flower.png" alt="">
+			</div>
+		</div>
+	</div>
+</div>
+<div class="Jake" style="display: none;">
+	<h1 class="text-center">POINTS</h1>
+	<h1 class="points text-center">0</h1>
+	<div class="container">
+		<div class="row">
+			<div class="col-3 border" style="height: 300px; background: #fbbb11">
+				<img class="jakethedog w-75" src="jake.png" alt="" style="display: none">
+				<img class="iceking w-75" src="Ice_King.png" alt="" style="display: none">
+			</div>
+			<div class="col-3 border" style="height: 300px; background: #fbbb11">
+				<img class="jakethedog" src="jake.png"  alt="" style="display: none">
+				<img class="iceking w-75" src="Ice_King.png" alt="" style="display: none">
+			</div>
+			<div class="col-3 border" style="height: 300px; background: #fbbb11">
+				<img class="jakethedog" src="jake.png"  alt="" style="display: none">
+				<img class="iceking w-75" src="Ice_King.png" alt="" style="display: none">
+			</div>
+			<div class="col-3 border" style="height: 300px; background: #fbbb11">
+				<img class="jakethedog" src="jake.png"  alt="" style="display: none">
+				<img class="iceking w-75" src="Ice_King.png" alt="" style="display: none">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-3 border" style="height: 300px; background: #fbbb11">
+				<img class="jakethedog" src="jake.png" alt="" style="display: none">
+				<img class="iceking w-75" src="Ice_King.png" alt="" style="display: none">
+			</div>
+			<div class="col-3 border" style="height: 300px; background: #fbbb11">
+				<img class="jakethedog" src="jake.png"  alt="" style="display: none">
+				<img class="iceking w-75" src="Ice_King.png" alt="" style="display: none">
+			</div>
+			<div class="col-3 border" style="height: 300px; background: #fbbb11">
+				<img class="jakethedog" src="jake.png"  alt="" style="display: none">
+				<img class="iceking w-75" src="Ice_King.png" alt="" style="display: none">
+			</div>
+			<div class="col-3 border" style="height: 300px; background: #fbbb11">
+				<img class="jakethedog" src="jake.png"  alt="" style="display: none">
+				<img class="iceking w-75" src="Ice_King.png" alt="" style="display: none">
+			</div>
+		</div>
+	</div>
+</div>
+<div class="window">
+	<h1 class="text-center text-warning" style="font-size: 500%; margin-top: 90px;">Ты прошeл дальше!!!</h1>
+</div>
+<div class="window2">
+	<h1 class="text-center text-primary" style="font-size: 500%; margin-top: 90px;">Побробуй снова(((</h1>
+</div>
+<script type="text/javascript">
+	let a = function(){
+		document.querySelector(".frute").style.display = "block";
+		document.querySelector(".ins").style.display = "none";
+	}
+	setTimeout(a,20000)
+//frute
+	let grapes = document.querySelectorAll(".grape");
+	let aplles = document.querySelectorAll(".aplle");
+	let pears = document.querySelectorAll(".pear");
+	let score = 0;
+		for(let index = 0; index<8; index = index + 1){//цикл
+			grapes[index].onclick = function(){
+				score = score + 1;
+				document.querySelector(".score1").innerHTML = score;
+				grapes[index].style.display = "none"
+				if ( score  == 8 ) {
+					document.querySelector(".task").style.display = "none";
+					document.querySelector(".task1").style.display = "block";
+					for(let index = 0; index<13; index = index + 1){//цикл
+						aplles[index].onclick = function(){
+							score = score + 1;
+							document.querySelector(".score1").innerHTML = score;
+							aplles[index].style.display = "none";
+							if ( score  == 21 ) {
+								document.querySelector(".task1").style.display = "none";
+								document.querySelector(".task2").style.display = "block";
+								for(let index = 0; index<8; index = index + 1){//цикл
+								pears[index].onclick = function(){
+									score = score + 1;
+									document.querySelector(".score1").innerHTML = score;
+									pears[index].style.display = "none"
+									if ( score == 29 ) {
+										alert("Молодец , ты собрал все фрукты !");
+										document.querySelector(".Jake").style.display = "block";
+										document.querySelector(".frute").style.display = "none";
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+//Jake
+	score2 = 0;
+	let jakes = document.querySelectorAll(".jakethedog");
+	let kings = document.querySelectorAll(".iceking");
+
+	let wind=document.querySelector(".window");
+	let wind2=document.querySelector(".window2");
+
+	let x = function(){
+		let rand_j = Math.random()*8
+		let round_j = Math.round(rand_j);
+
+		jakes[round_j].style.display="block"
+		let xx =function(){
+			jakes[round_j].style.display="none"
+		}
+		setTimeout(xx,700);
+		jakes[round_j].onclick = function(){
+			jakes[round_j].style.display="none";
+			score2 = score2 + 1;
+			document.querySelector(".points").innerHTML = score2;
+		}
+		
+	}
+	let y = function(){
+		let rand_ik = Math.random()*8
+		let round_ik = Math.round(rand_ik)
+
+		kings[round_ik].style.display="block"
+		let yy =function(){
+			kings[round_ik].style.display="none"
+		}
+		setTimeout(yy,700);
+		kings[round_ik].onclick = function(){
+			kings[round_ik].style.display="none"
+			score2 = score2 - 5;
+			document.querySelector(".points").innerHTML = score2;
+		}
+		
+	}
+	let stopjake = setInterval(x,1000);
+	let stopIceking = setInterval(y,2000);
+	
+	let end = function(){
+		if ( score2  >= 10  ) {
+				clearInterval(stopjake);
+				clearInterval(stopIceking);
+				document.querySelector(".Jake").style.display = "none";
+				document.querySelector(".game").style.display = "block";
+			}
+		else {
+			wind2.style.top="10%"
+			clearInterval(stopjake);
+			clearInterval(stopIceking);
+
+		}	
+	}
+
+	setTimeout(end,50000);
+//game
+	let b1s = document.querySelectorAll(".b1");
+	for(let i = 0; i < 26; i = i + 1){
+		b1s[i].onclick = function(){
+			alert("Неправильно")
+		}
+	}
+	document.querySelector(".b2").onclick = function(){
+		alert("Правильно");
+		document.querySelector(".b01").style.background = "yellow";
+		document.querySelector(".b06").style.background = "yellow"
+	}
+	document.querySelector(".b3").onclick = function(){
+		alert("Правильно");
+		document.querySelector(".b02").style.background = "yellow"
+	}
+	document.querySelector(".b4").onclick = function(){
+		alert("Правильно");		
+		document.querySelector(".b03").style.background = "yellow"
+	}
+	document.querySelector(".b5").onclick = function(){
+		alert("Правильно");
+		document.querySelector(".b04").style.background = "yellow"
+	}
+	document.querySelector(".b6").onclick = function(){
+		alert("Правильно");
+		document.querySelector(".b05").style.background = "yellow"
+	}
+	document.querySelector(".b7").onclick = function(){
+		alert("Правильно");
+		document.querySelector(".b07").style.background = "yellow"
+	}
+	document.querySelector(".b8").onclick = function(){
+		alert("Правильно");
+		document.querySelector(".b08").style.background = "yellow"
+		alert("Молодец! Ты прошел(а) все три тура! Поздравляю!!!")
+	}
+</script>
+</body>
+</html>
